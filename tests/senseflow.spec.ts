@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 /*
     For running these test run the following:
     1. npm run test:setup - (this will authenticate the user and save the state to a file)
-    2. npm run test:time / npm run test 
+    2. npm run test:sense / npm run test 
 */
 
 //not yet authenticated test
@@ -33,4 +33,5 @@ test('time page loads while already authenticated', async ({ page }) => {
     await page.goto('/time');
     await expect(page).toHaveURL(/\/time$/);
     await expect(page).toHaveTitle(/SenseFlow/i);
+    await page.pause();
 });
