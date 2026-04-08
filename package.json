@@ -12,7 +12,9 @@
     "test:chromium": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
     "test:webkit": "npx playwright test --project=webkit",
-    "test:one": "npx playwright test tests/example.spec.ts",
+    "test:default": "npx playwright test tests/example.spec.ts",
+    "test:setup": "playwright test tests/auth.setup.ts --project=setup --headed",
+    "test:sense": "playwright test tests/senseflow.spec.ts --project=chromium",
     "test:grep": "npx playwright test --grep",
     "codegen": "npx playwright codegen",
     "install:browsers": "npx playwright install"
