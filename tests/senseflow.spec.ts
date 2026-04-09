@@ -33,5 +33,6 @@ test('time page loads while already authenticated', async ({ page }) => {
     await page.goto('/time');
     await expect(page).toHaveURL(/\/time$/);
     await expect(page).toHaveTitle(/SenseFlow/i);
+    await page.locator('tr:nth-child(44) > .fc-timegrid-slot.fc-timegrid-slot-lane').first().click();
     await page.pause();
 });

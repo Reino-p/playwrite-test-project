@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('authenticate once and save state', async ({ page }) => {
+test.skip('authenticate once and save state', async ({ page }) => {
   await page.goto('/');
 
   await expect(page).toHaveTitle(/SenseFlow/i);
@@ -21,3 +21,30 @@ test('authenticate once and save state', async ({ page }) => {
 
   await page.context().storageState({ path: 'playwright/.auth/user.json' });
 });
+
+test('manual authenticate and save state', async ({ page }) => {
+    await page.goto('/');
+  
+    await expect(page).toHaveTitle(/SenseFlow/i);
+  
+    // Let the user do everything manually:
+    // - enter org name
+    // - continue
+    // - choose Google
+    // - enter email/password
+    // - finish login
+    //
+    // This pauses the test and opens Playwright Inspector.
+    await page.pause();
+  
+    // After you complete login manually and the app redirects,
+    // resume the test from the inspector.
+  
+    await page.waitForURL('**/time');
+    await expect(page).toHaveURL(/\/time$/);
+  
+    await page.context().storageState({
+      path: 'playwright/.auth/user.json',
+      indexedDB: true,
+    });
+  });
